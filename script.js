@@ -15,7 +15,6 @@ function moveSlide(step) {
 
   // Mise à jour de l'index du slide actuel
   currentSlide += step;
-  console.log("curr", currentSlide);
 
   // S'assurer que currentSlide ne va jamais sur la slide fantôme (index 0)
   if (currentSlide < 1) {
@@ -23,7 +22,6 @@ function moveSlide(step) {
   } else if (currentSlide > totalSlides) {
     currentSlide = 1; // Si on dépasse le dernier slide, on revient au premier
   }
-  console.log("curr2", currentSlide);
 
   // Décalage pour centrer le slide actif
   const offset = (container.offsetWidth - slideWidth) / 2;
