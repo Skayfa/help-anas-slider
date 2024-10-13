@@ -1,4 +1,4 @@
-let currentSlide = 1; // On commence avec le 2ème slide (index 1, car index 0 est la slide fantôme)
+let currentSlide = 2; // On commence avec le 2ème slide (index 1, car index 0 est la slide fantôme)
 const totalSlides = document.querySelectorAll(".slide").length - 1; // On exclut la slide fantôme
 const slideBackgroundColors = [
   "#3498db",
@@ -15,6 +15,7 @@ function moveSlide(step) {
 
   // Mise à jour de l'index du slide actuel
   currentSlide += step;
+  console.log("curr", currentSlide);
 
   // S'assurer que currentSlide ne va jamais sur la slide fantôme (index 0)
   if (currentSlide < 1) {
@@ -22,9 +23,10 @@ function moveSlide(step) {
   } else if (currentSlide > totalSlides) {
     currentSlide = 1; // Si on dépasse le dernier slide, on revient au premier
   }
+  console.log("curr2", currentSlide);
 
   // Décalage pour centrer le slide actif
-  const offset = (container.offsetWidth - slideWidth) / 2; // Décalage pour centrer dans le conteneur
+  const offset = (container.offsetWidth - slideWidth) / 2;
   const translateX = currentSlide * slideWidth - offset;
 
   slides.style.transform = `translateX(-${translateX}px)`;
@@ -42,12 +44,21 @@ function updateActiveSlide() {
   const allSlides = document.querySelectorAll(".slide");
 
   allSlides.forEach((slide, index) => {
+    slide.classList.remove("active", "visible");
     if (index === currentSlide) {
-      slide.classList.add("active");
-    } else {
-      slide.classList.remove("active");
+      slide.classList.add("active"); // Slide active
+    } else if (index === currentSlide - 1 || index === currentSlide + 1) {
+      slide.classList.add("visible"); // Slide -1 et +1 visibles
     }
   });
+
+  // Gérer le cas où le premier ou dernier slide est actif, pour la boucle
+  if (currentSlide === 1) {
+    allSlides[totalSlides].classList.add("visible"); // Dernier slide est le voisin gauche
+  }
+  if (currentSlide === totalSlides) {
+    allSlides[1].classList.add("visible"); // Premier slide est le voisin droit
+  }
 }
 
 function createDots() {
@@ -71,7 +82,6 @@ function updateDots() {
 
   dots.forEach((dot, index) => {
     if (index + 1 === currentSlide) {
-      // Index + 1 car currentSlide commence à 1
       dot.classList.add("active");
     } else {
       dot.classList.remove("active");
@@ -102,5 +112,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Mise à jour des slides pour définir celui qui est actif au démarrage
   updateActiveSlide();
-  createDots(); // Crée les dots une fois la page chargée
+  createDots();
 });
