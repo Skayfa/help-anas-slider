@@ -1,55 +1,121 @@
-.slider{
-    width: 1300px;
-    max-width: 100vw;
-    height: 700px;
-    margin: auto;
-    position: relative;
-    overflow: hidden;
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
 }
-.slider .list{
+
+.background {
     position: absolute;
-    width: max-content;
-    height: 100%;
-    left: 0;
     top: 0;
-    display: flex;
-    transition: 1s;
-}
-.slider .list img{
-    max-width: 100vw;
-    height: 100%;
-    object-fit: cover;
-}
-.slider .buttons{
-    position: absolute;
-    top: 45%;
-    left: 5%;
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
-}
-.slider .buttons button{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #fff5;
-    color: #fff;
-    border: none;
-    font-family: monospace;
-    font-weight: bold;
-}
-.slider .dots{
-    position: absolute;
-    bottom: 10px;
     left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffd700;
+    z-index: -1;
+    transition: background-color 0.5s ease;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.slide {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.product {
+    flex: 0 0 33.33%;
+    opacity: 0.5;
+    transition: opacity 0.5s ease;
+    position: relative;
+}
+
+.product.active {
+    opacity: 1;
+}
+
+.product img.left-image {
+    position: absolute;
+    bottom: -220px;
+    left: -500px;
+    opacity: 0;
+}
+
+.product img.right-image {
+    position: absolute;
+    bottom: -220px;
+    right: -500px;
+    opacity: 0;
+    display: none;
+    /* Masqué par défaut */
+}
+
+.product.active img.left-image {
+    display: block;
+    /* Visible seulement si le produit est actif */
+    opacity: 1;
+}
+
+.product.active img.right-image {
+    display: block;
+    /* Visible seulement si le produit est actif */
+    opacity: 1;
+}
+
+.arrow {
+    position: absolute;
+    top: 20%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 2rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.arrow.left {
+    left: 10px;
+}
+
+.arrow.right {
+    right: 10px;
+}
+
+.info {
+    margin-top: 20px;
+}
+
+#action-button {
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.dots {
+    margin-top: 100px;
+}
+
+.slider .dots {
+    margin-top: 100px;
     color: #fff;
     width: 100%;
-    margin: 0;
+
     padding: 0;
     display: flex;
     justify-content: center;
 }
-.slider .dots li{
+
+.slider .dots li {
     list-style: none;
     width: 10px;
     height: 10px;
@@ -58,52 +124,7 @@
     border-radius: 20px;
     transition: 0.5s;
 }
-.slider .dots li.active{
+
+.slider .dots li.active {
     width: 30px;
-}
-
-.item{
-    width: 100vw;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #000;
-    position: relative;
-}
-
-.subImg1 {
-    position: absolute;
-    bottom: -50px;
-    left: 50px;
-    opacity: 0;
-}
-
-.subImg1.active {
-    opacity: 1;
-}
-
-.subImg2 {
-    position: absolute;
-    bottom: -50px;
-    right: 50px;
-    opacity: 0;
-}
-
-.subImg2.active {
-    opacity: 1;
-}
-
-.subImg1 img,
-.subImg2 img {
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 10px;
-    transition: 0.5s;
-}
-
-@media screen and (max-width: 768px){
-    .slider{
-        height: 400px;
-    }
 }

@@ -1,76 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider de Produits</title>
+
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <div class="container">
-        <div class="slider">
-            <div class="list">
-                <div class="item">
-                    <img src="img/chips1.png" alt="">
-                    <div class="subImg1 active">
-                        <img src="img/subChips1.png" alt="">
-                    </div>
-                    <div class="subImg2 active">
-                        <img src="img/subChips1.png" alt="">
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="img/chips2.png" alt="">
-                    <div class="subImg1">
-                        <img src="img/subChips1.png" alt="">
-                    </div>
-                    <div class="subImg2">
-                        <img src="img/subChips1.png" alt="">
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="img/chips3.png" alt="">
-                    <div class="subImg1">
-                        <img src="img/subChips1.png" alt="">
-                    </div>
-                    <div class="subImg2">
-                        <img src="img/subChips1.png" alt="">
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="img/chips2.png" alt="">
-                    <div class="subImg1">
-                        <img src="img/subChips1.png" alt="">
-                    </div>
-                    <div class="subImg2">
-                        <img src="img/subChips1.png" alt="">
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="img/chips1.png" alt="">
-                    <div class="subImg1">
-                        <img src="img/subChips1.png" alt="">
-                    </div>
-                    <div class="subImg2">
-                        <img src="img/subChips1.png" alt="">
-                    </div>
-                </div>
+    <div class="background" id="background"></div>
+    <div class="slider">
+        <div class="arrow left" onclick="moveSlide(-1)">&#10094;</div>
+        <div class="slide">
+            <div class="product"></div>
+            <div class="product" data-color="#FFA500" data-bg-color="#FFD700" data-button-text="Voir Plus">
+                <img src="./img/produit1.png" alt="Produit 1" />
+                <h3>Produit 1</h3>
+                <!-- Images supplémentaires -->
+                <img src="left-image1.png" class="left-image" alt="Left Image 1" />
+                <img src="right-image1.png" class="right-image" alt="Right Image 1" />
             </div>
-            <div class="buttons">
-                <button id="prev"><</button>
-                <button id="next">></button>
+            <div class="product" data-color="#008000" data-bg-color="#32CD32" data-button-text="Acheter">
+                <img src="./img/produit2.png" alt="Produit 2" />
+                <h3>Produit 2</h3>
+                <!-- Images supplémentaires -->
+                <img src="left-image2.png" class="left-image" alt="Left Image 2" />
+                <img src="right-image2.png" class="right-image" alt="Right Image 2" />
             </div>
-            <ul class="dots">
-                <li class="active"></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
+            <div class="product" data-color="#0000FF" data-bg-color="#1E90FF" data-button-text="Sélectionner">
+                <img src="./img/produit3.png" alt="Produit 3" />
+                <h3>Produit 3</h3>
+                <!-- Images supplémentaires -->
+                <img src="left-image3.png" class="left-image" alt="Left Image 3" />
+                <img src="right-image3.png" class="right-image" alt="Right Image 3" />
+            </div>
+            <div class="product" data-color="#FF4500" data-bg-color="#FF6347" data-button-text="Découvrir">
+                <img src="produit4.png" alt="Produit 4" />
+                <h3>Produit 4</h3>
+                <!-- Images supplémentaires -->
+                <img src="left-image4.png" class="left-image" alt="Left Image 4" />
+                <img src="right-image4.png" class="right-image" alt="Right Image 4" />
+            </div>
+            <div class="product" data-color="#9400D3" data-bg-color="#DDA0DD" data-button-text="Explorer">
+                <img src="produit5.png" alt="Produit 5" />
+                <h3>Produit 5</h3>
+                <!-- Images supplémentaires -->
+                <img src="left-image5.png" class="left-image" alt="Left Image 5" />
+                <img src="right-image5.png" class="right-image" alt="Right Image 5" />
+            </div>
+        </div>
+        <div class="arrow right" onclick="moveSlide(1)">&#10095;</div>
+        <ul class="dots">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="info">
+            <h2 id="product-title">Produit 1</h2>
+            <button id="action-button" style="background-color: #ffa500">
+                Voir Plus
+            </button>
         </div>
     </div>
-
     <script src="app.js"></script>
 </body>
+
 </html>
