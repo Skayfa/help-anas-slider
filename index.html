@@ -2,71 +2,113 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Slider de Produits</title>
-
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider en HTML, CSS et JS</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="background" id="background"></div>
-    <div class="slider">
-        <div class="arrow left" onclick="moveSlide(-1)">&#10094;</div>
-        <div class="slide">
-            <div class="product"></div>
-            <div class="product" data-color="#FFA500" data-bg-color="#FFD700" data-button-text="Voir Plus">
-                <img src="./img/produit1.png" alt="Produit 1" />
-                <h3>Produit 1</h3>
-                <!-- Images supplémentaires -->
-                <img src="left-image1.png" class="left-image" alt="Left Image 1" />
-                <img src="right-image1.png" class="right-image" alt="Right Image 1" />
+    <!-- Conteneur principal -->
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slides">
+                <!-- Slide fantôme -->
+                <div class="slide ghost-slide" id="ghost-slide">
+                    <h2></h2> <!-- Slide vide, juste pour occuper l'espace -->
+                </div>
+                <!-- Slide 1 -->
+                <div class="slide" id="slide1">
+                    <div class="containerPhoto">
+                        <div class="photo">
+                            <img src="./img/produit2.png" alt="Sous-photo 1">
+                        </div>
+                        <h2>Slide 3</h2>
+                    </div>
+                    <div class="sub-photo right">
+                        <img src="./img/subChips1.png" alt="Sous-photo 1">
+                    </div>
+                    <div class="sub-photo left">
+                        <img src="./img/subChips1.png" alt="Sous-photo 1.2">
+                    </div>
+                    <!-- Bouton unique pour le slide 1 -->
+                    <button class="slide-btn">Action 1</button>
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide" id="slide2">
+                    <div class="containerPhoto">
+                        <div class="photo">
+                            <img src="./img/produit2.png" alt="Sous-photo 1">
+                        </div>
+                        <h2>Slide 3</h2>
+                    </div>
+                    <div class="sub-photo right">
+                        <img src="./img/subChips1.png" alt="Sous-photo 2">
+                    </div>
+                    <div class="sub-photo left">
+                        <img src="./img/subChips1.png" alt="Sous-photo 2.2">
+                    </div>
+                    <button class="slide-btn">Action 2</button>
+                </div>
+                <!-- Slide 3 -->
+                <div class="slide" id="slide3">
+                    <div class="containerPhoto">
+                        <div class="photo">
+                            <img src="./img/produit2.png" alt="Sous-photo 1">
+                        </div>
+                        <h2>Slide 3</h2>
+                    </div>
+                    <div class="sub-photo right">
+                        <img src="./img/subChips1.png" alt="Sous-photo 3">
+                    </div>
+                    <div class="sub-photo left">
+                        <img src="./img/subChips1.png" alt="Sous-photo 3.2">
+                    </div>
+                    <!-- Bouton unique pour le slide 2 -->
+                    <button class="slide-btn">Action 3</button>
+                </div>
+                <!-- Slide 4 -->
+                <div class="slide" id="slide4">
+                    <div class="containerPhoto">
+                        <div class="photo">
+                            <img src="./img/produit2.png" alt="Sous-photo 1">
+                        </div>
+                        <h2>Slide 3</h2>
+                    </div>
+                    <div class="sub-photo right">
+                        <img src="./img/subChips1.png" alt="Sous-photo 4">
+                    </div>
+                    <div class="sub-photo left">
+                        <img src="./img/subChips1.png" alt="Sous-photo 4.2">
+                    </div>
+                    <!-- Bouton unique pour le slide 3 -->
+                    <button class="slide-btn">Action 3</button>
+                </div>
+                <!-- Slide 5 -->
+                <div class="slide" id="slide5">
+                    <div class="containerPhoto">
+                        <div class="photo">
+                            <img src="./img/produit2.png" alt="Sous-photo 1">
+                        </div>
+                        <h2>Slide 3</h2>
+                    </div>
+                    <div class="sub-photo right">
+                        <img src="./img/subChips1.png" alt="Sous-photo 5">
+                    </div>
+                    <div class="sub-photo left">
+                        <img src="./img/subChips1.png" alt="Sous-photo 5.2">
+                    </div>
+                    <!-- Bouton unique pour le slide 3 -->
+                    <button class="slide-btn">Action 3</button>
+                </div>
             </div>
-            <div class="product" data-color="#008000" data-bg-color="#32CD32" data-button-text="Acheter">
-                <img src="./img/produit2.png" alt="Produit 2" />
-                <h3>Produit 2</h3>
-                <!-- Images supplémentaires -->
-                <img src="left-image2.png" class="left-image" alt="Left Image 2" />
-                <img src="right-image2.png" class="right-image" alt="Right Image 2" />
-            </div>
-            <div class="product" data-color="#0000FF" data-bg-color="#1E90FF" data-button-text="Sélectionner">
-                <img src="./img/produit3.png" alt="Produit 3" />
-                <h3>Produit 3</h3>
-                <!-- Images supplémentaires -->
-                <img src="left-image3.png" class="left-image" alt="Left Image 3" />
-                <img src="right-image3.png" class="right-image" alt="Right Image 3" />
-            </div>
-            <div class="product" data-color="#FF4500" data-bg-color="#FF6347" data-button-text="Découvrir">
-                <img src="produit4.png" alt="Produit 4" />
-                <h3>Produit 4</h3>
-                <!-- Images supplémentaires -->
-                <img src="left-image4.png" class="left-image" alt="Left Image 4" />
-                <img src="right-image4.png" class="right-image" alt="Right Image 4" />
-            </div>
-            <div class="product" data-color="#9400D3" data-bg-color="#DDA0DD" data-button-text="Explorer">
-                <img src="produit5.png" alt="Produit 5" />
-                <h3>Produit 5</h3>
-                <!-- Images supplémentaires -->
-                <img src="left-image5.png" class="left-image" alt="Left Image 5" />
-                <img src="right-image5.png" class="right-image" alt="Right Image 5" />
-            </div>
-        </div>
-        <div class="arrow right" onclick="moveSlide(1)">&#10095;</div>
-        <ul class="dots">
-            <li class="active"></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-        <div class="info">
-            <h2 id="product-title">Produit 1</h2>
-            <button id="action-button" style="background-color: #ffa500">
-                Voir Plus
-            </button>
+            <div class="slider-dots"></div>
+            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="next" onclick="moveSlide(1)">&#10095;</button>
         </div>
     </div>
-    <script src="app.js"></script>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
