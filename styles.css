@@ -16,15 +16,10 @@ body {
     background-color: #f1f1f1;
 }
 
-/* Conteneur principal pour le slider */
 .slider-container {
-    width: 90%;
-    /* Par exemple, 80% de la largeur de la page */
+    width: 1140px;
     margin: auto;
-    /* Masque les éléments en dehors du conteneur */
     border-radius: 10px;
-    padding-top: 200px;
-    height: 700px;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -44,17 +39,14 @@ body {
 .slide {
     flex: 0 0 33.33%;
     /* position: relative; */
-    /* Chaque slide occupe 1/3 de la largeur */
     box-sizing: border-box;
     padding: 40px;
     text-align: center;
     opacity: 0.5;
-    /* Réduction de l'opacité quand le slide n'est pas central */
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out, scale 0.5s ease-in-out;
-    height: 390px;
+    transition: opacity 0.5s ease-in-out;
+    height: 325px;
     transform: translateY(-40%);
     visibility: hidden;
-    scale: 0.8;
 }
 
 .slide h2,
@@ -65,7 +57,6 @@ body {
 .slide.active {
     opacity: 1;
     /* Slide central complètement visible */
-    scale: 1.1;
     transform: translateY(-41%);
     visibility: visible;
 }
@@ -122,26 +113,23 @@ button {
     left: -450px;
 }
 
-/* Slide fantôme, toujours visible mais jamais actif */
 .ghost-slide {
     opacity: 0;
     pointer-events: none;
-    /* Empêche toute interaction */
 }
 
-/* Style pour les dots */
 .slider-dots {
     text-align: center;
     margin-top: 20px;
     position: absolute;
-    bottom: 170px;
-    right: calc(50% - 60px);
+    bottom: 45px;
+    right: calc(50% - 90px);
 }
 
 .slider-dots .dot {
     display: inline-block;
-    width: 12px;
-    height: 4px;
+    width: 13px;
+    height: 5px;
     background-color: #bbb;
     border-radius: 4px;
     margin: 0 5px;
@@ -151,52 +139,44 @@ button {
 
 .slider-dots .dot.active {
     background-color: #fff;
-    width: 34px;
+    width: 35px;
 }
 
-/* Boutons uniques pour chaque slide */
 .slide-btn {
     display: none;
-    padding: 10px 20px;
+    padding: 18px 27px;
     border: none;
     color: white;
-    border-radius: 5px;
+    border-radius: 21.14px;
     cursor: pointer;
     font-size: 16px;
     position: absolute;
-    bottom: -125px;
+    bottom: -110px;
     transform: translateY(90%) translateX(-50%);
 }
 
-/* Bouton visible uniquement lorsque le slide est actif */
 .slide.active .slide-btn {
     display: inline-block;
 }
 
-/* Couleur unique pour chaque bouton */
 #slide1 .slide-btn {
     background-color: #34930b;
-    /* Bleu pour slide 1 */
 }
 
 #slide2 .slide-btn {
     background-color: #004930;
-    /* Rouge pour slide 2 */
 }
 
 #slide3 .slide-btn {
-    background-color: #2ecc71;
-    /* Vert pour slide 3 */
+    background-color: #2e0c71;
 }
 
 #slide4 .slide-btn {
     background-color: #717171;
-    /* Jaune pour slide 4 */
 }
 
 #slide5 .slide-btn {
     background-color: #004930;
-    /* Violet pour slide 5 */
 }
 
 .photo {
@@ -204,10 +184,15 @@ button {
 }
 
 .photo img {
-    width: 280px;
-    height: 280px;
+    width: 210px;
+    height: 170px;
     object-fit: cover;
     transition: all 0.5s ease-in-out;
+}
+
+.slide.active .photo img {
+    width: 350px;
+    height: 280px;
 }
 .containerPhoto{
     display: flex;
