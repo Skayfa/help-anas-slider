@@ -6,12 +6,37 @@ const slideBackgroundColors = [
   "#2ecc71",
   "#f1c40f",
   "#8e44ad",
-]; // Couleurs de fond// Couleurs de fond, ajustées pour exclure la fantôme
+]; // Couleurs de fond
 
-function moveSlide(step) {
+// Fonction qui calcule et applique la position des slides
+function calculateAndSetSlidePosition() {
   const slides = document.querySelector(".slides");
   const container = document.querySelector(".slider-container");
-  const slideWidth = container.offsetWidth / 3; // Divise la largeur du conteneur par 3 pour chaque slide
+
+  // Vérifier si l'écran est de petite taille (mobile)
+  const isMobile = window.innerWidth <= 768;
+
+  let slideWidth;
+  if (isMobile) {
+    slideWidth = container.offsetWidth; // Sur mobile, chaque slide occupe 100% de la largeur
+  } else {
+    slideWidth = container.offsetWidth / 3; // Sur les grands écrans, 1/3 de la largeur
+  }
+
+  // Décalage pour centrer le slide actif
+  const offset = isMobile ? 0 : (container.offsetWidth - slideWidth) / 2;
+  const translateX = (currentSlide - 1) * slideWidth - offset;
+
+  slides.style.transform = `translateX(-${translateX}px)`;
+
+  // Mise à jour de la couleur de fond selon le slide actif
+  const slider = document.querySelector(".slider");
+  slider.style.backgroundColor = slideBackgroundColors[currentSlide - 1];
+}
+
+// Fonction qui déplace les slides
+function moveSlide(step) {
+  const container = document.querySelector(".slider-container");
 
   // Mise à jour de l'index du slide actuel
   currentSlide += step;
@@ -23,29 +48,23 @@ function moveSlide(step) {
     currentSlide = 1; // Si on dépasse le dernier slide, on revient au premier
   }
 
-  // Décalage pour centrer le slide actif
-  const offset = (container.offsetWidth - slideWidth) / 2;
-  const translateX = currentSlide * slideWidth - offset;
-
-  slides.style.transform = `translateX(-${translateX}px)`;
-
-  // Changement de la couleur de fond en fonction du slide central
-  const slider = document.querySelector(".slider");
-  slider.style.backgroundColor = slideBackgroundColors[currentSlide - 1]; // Ajuster l'index des couleurs
+  // Appliquer la nouvelle position des slides
+  calculateAndSetSlidePosition();
 
   // Mise à jour des slides pour ajouter une classe active au slide central
   updateActiveSlide();
   updateDots();
 }
 
+// Mise à jour des slides pour activer la bonne slide
 function updateActiveSlide() {
   const allSlides = document.querySelectorAll(".slide");
 
   allSlides.forEach((slide, index) => {
     slide.classList.remove("active", "visible");
-    if (index === currentSlide) {
+    if (index === currentSlide - 1) {
       slide.classList.add("active"); // Slide active
-    } else if (index === currentSlide - 1 || index === currentSlide + 1) {
+    } else if (index === currentSlide - 2 || index === currentSlide) {
       slide.classList.add("visible"); // Slide -1 et +1 visibles
     }
   });
@@ -55,10 +74,11 @@ function updateActiveSlide() {
     allSlides[totalSlides].classList.add("visible"); // Dernier slide est le voisin gauche
   }
   if (currentSlide === totalSlides) {
-    allSlides[1].classList.add("visible"); // Premier slide est le voisin droit
+    allSlides[0].classList.add("visible"); // Premier slide est le voisin droit
   }
 }
 
+// Création des dots sous le slider
 function createDots() {
   const dotsContainer = document.querySelector(".slider-dots");
 
@@ -75,6 +95,7 @@ function createDots() {
   updateDots(); // Met à jour le dot actif au démarrage
 }
 
+// Mise à jour des dots en fonction du slide actif
 function updateDots() {
   const dots = document.querySelectorAll(".slider-dots .dot");
 
@@ -87,6 +108,7 @@ function updateDots() {
   });
 }
 
+// Aller directement à un slide
 function goToSlide(slideIndex) {
   currentSlide = slideIndex; // Met à jour l'index du slide
   moveSlide(0); // Force l'actualisation sans bouger
@@ -94,21 +116,14 @@ function goToSlide(slideIndex) {
 
 // Initialiser le slider avec le 2ème slide au centre
 document.addEventListener("DOMContentLoaded", function () {
-  const slides = document.querySelector(".slides");
-  const container = document.querySelector(".slider-container");
-  const slideWidth = container.offsetWidth / 3; // Divise la largeur du conteneur par 3
-
-  // Décalage pour centrer le 2ème slide
-  const offset = (container.offsetWidth - slideWidth) / 2;
-  const translateX = currentSlide * slideWidth - offset;
-
-  slides.style.transform = `translateX(-${translateX}px)`;
-
-  // Appliquer la couleur de fond du 2ème slide
-  const slider = document.querySelector(".slider");
-  slider.style.backgroundColor = slideBackgroundColors[currentSlide - 1];
+  calculateAndSetSlidePosition(); // Calcul initial
 
   // Mise à jour des slides pour définir celui qui est actif au démarrage
   updateActiveSlide();
   createDots();
+});
+
+// Réagir au redimensionnement de la fenêtre pour ajuster les slides
+window.addEventListener("resize", function () {
+  calculateAndSetSlidePosition(); // Recalculer la position lors du redimensionnement
 });
