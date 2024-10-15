@@ -33,7 +33,6 @@ body {
 
 .slides {
     display: flex;
-    transition: transform 0.5s ease-in-out;
 }
 
 .slide {
@@ -43,7 +42,6 @@ body {
     padding: 40px;
     text-align: center;
     opacity: 0.5;
-    transition: opacity 0.5s ease-in-out;
     height: 325px;
     transform: translateY(-40%);
     visibility: hidden;
@@ -187,7 +185,6 @@ button {
     width: 210px;
     height: 170px;
     object-fit: cover;
-    transition: all 0.5s ease-in-out;
 }
 
 .slide.active .photo img {
@@ -202,3 +199,62 @@ button {
     height: 350px;
     flex-direction: column;
 }
+
+/* Media query pour mobile */
+@media (max-width: 768px) {
+    .app {
+        overflow: hidden;
+    }
+
+    .slider-container {
+        width: 85%;
+        /* Le slider occupe toute la largeur sur mobile */
+    }
+
+    .slide {
+        flex: 0 0 100%;
+        /* Chaque slide occupe 100% de la largeur */
+        padding: 20px;
+        /* Réduction du padding pour les petits écrans */
+    }
+
+    .photo img {
+        width: 250px;
+        /* Réduction de la taille de l'image sur mobile */
+        height: 200px;
+    }
+
+    /* Cacher toutes les autres slides sauf celle active */
+    .slide.visible {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    /* Ajuster la position des boutons de navigation */
+    .prev,
+    .next {
+        top: 50%;
+        /* Centrer les boutons verticalement sur mobile */
+    }
+
+    /* Ajuster la position des dots */
+    .slider-dots {
+        right: calc(50% - 70px);
+        bottom: 40px;
+    }
+
+    /* Ajuster la taille du bouton sur mobile */
+    .slide-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .right {
+        right: -80px;
+    }
+
+    .left {
+        left: -80px;
+    }
+}
+
