@@ -6,12 +6,21 @@ const slideBackgroundColors = [
   "#2ecc71",
   "#f1c40f",
   "#8e44ad",
-]; // Couleurs de fond// Couleurs de fond, ajustées pour exclure la fantôme
+]; // Couleurs de fond, ajustées pour exclure la fantôme
 
 function moveSlide(step) {
   const slides = document.querySelector(".slides");
   const container = document.querySelector(".slider-container");
-  const slideWidth = container.offsetWidth / 3; // Divise la largeur du conteneur par 3 pour chaque slide
+
+  // Vérifier si l'écran est de petite taille (mobile)
+  const isMobile = window.innerWidth <= 768;
+
+  let slideWidth;
+  if (isMobile) {
+    slideWidth = container.offsetWidth; // Sur mobile, chaque slide occupe 100% de la largeur
+  } else {
+    slideWidth = container.offsetWidth / 3; // Sur les grands écrans, 1/3 de la largeur
+  }
 
   // Mise à jour de l'index du slide actuel
   currentSlide += step;
@@ -92,6 +101,10 @@ function goToSlide(slideIndex) {
   moveSlide(0); // Force l'actualisation sans bouger
 }
 
+function recalculateLayout() {
+  moveSlide(0); // Recalcule la mise en page sans changer de slide
+}
+
 // Initialiser le slider avec le 2ème slide au centre
 document.addEventListener("DOMContentLoaded", function () {
   const slides = document.querySelector(".slides");
@@ -111,4 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Mise à jour des slides pour définir celui qui est actif au démarrage
   updateActiveSlide();
   createDots();
+
+  // Ajouter un écouteur d'événement pour recalculer la mise en page lors du redimensionnement de la fenêtre
+  window.addEventListener("resize", recalculateLayout);
 });
